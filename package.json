@@ -1,0 +1,32 @@
+{
+  "name": "test-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "develop": "DEBUG=\"test-server*\" nodemon --exec \"node index.js\"",
+    "start": "DEBUG=\"test-server*\" ./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ajile/test-server.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ajile/test-server/issues"
+  },
+  "homepage": "https://github.com/ajile/test-server#readme",
+  "dependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-env": "^1.5.1",
+    "babel-register": "^6.24.1",
+    "cors": "^2.8.3",
+    "debug": "^2.6.8",
+    "express": "^4.15.3",
+    "forever-monitor": "^1.7.1",
+    "nodemon": "^1.11.0",
+    "ws": "^3.0.0"
+  }
+}

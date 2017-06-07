@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Client</title>
+  <script type="text/javascript">
+    var socket = new WebSocket("ws://127.0.0.1:8080/cars");
+    socket.onopen = function() {
+      console.log("Соединение установлено.");
+    };
+
+    socket.onclose = function(event) {
+      if (event.wasClean) {
+        console.log('Соединение закрыто чисто');
+      } else {
+        console.log('Обрыв соединения'); // например, "убит" процесс сервера
+      }
+      console.log('Код: ' + event.code + ' причина: ' + event.reason);
+    };
+
+    socket.onmessage = function(event) {
+      console.log("Получены данные " + event.data);
+    };
+
+    socket.onerror = function(error) {
+      console.log("Ошибка " + error.message);
+    };
+
+   fetch("http://127.0.0.1:8080/cars").then(data => data.json()).then(data => {
+     data.results.forEach(car => {
+      const carElement = document.createElement("div");
+        const licensePlateElement = document.createElement("div");
+        licensePlateElement.innerText = car.license_plate;
+        const tagsElement = document.createElement("div");
+        tagsElement.innerText = car.tags.join(",");
+        const statusElement = document.createElement("div");
+        statusElement.innerText = car.online ? "online" : "offline";
+
+      carElement.appendChild(licensePlateElement);
+      carElement.appendChild(tagsElement);
+      carElement.appendChild(statusElement);
+
+      document.body.appendChild(carElement);
+     })
+   });
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>
